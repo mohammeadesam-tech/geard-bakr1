@@ -1,0 +1,3298 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>جرد بكر المضلع والعلب | نظام المخزن</title>
+    <meta
+      name="description"
+      content="نظام بسيط وعملي لجرد بكر الورق المضلع (تست، فاخر، أبيض، كرافت) والكرتون العلب بالربطة أو العدد الفردي."
+    />
+    <meta property="og:title" content="جرد بكر المضلع والعلب" />
+    <meta
+      property="og:description"
+      content="نظام بسيط وعملي لجرد بكر الورق المضلع والكرتون العلب."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="assets/icon.png" />
+    <link rel="apple-touch-icon" href="assets/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-canvas: #f6f7f9;
+        --bg-surface: #ffffff;
+        --bg-subtle: #f1f4f8;
+        --bg-hover: #f8fafc;
+        --text-main: #0f172a;
+        --text-muted: #475569;
+        --text-soft: #64748b;
+        --border-line: #e2e8f0;
+        --border-strong: #cbd5e1;
+        --primary: #1e3a5f;
+        --primary-hover: #162c49;
+        --primary-soft: #eff4fa;
+        --primary-border: #d4e1f0;
+        --accent: #b45309;
+        --accent-soft: #fef3c7;
+        --success: #15803d;
+        --success-soft: #f0fdf4;
+        --warning: #b45309;
+        --warning-soft: #fffbeb;
+        --warning-border: #fde68a;
+        --danger: #b91c1c;
+        --danger-soft: #fef2f2;
+        --danger-border: #fecaca;
+        --type-test: #92400e;
+        --type-fakher: #1e3a5f;
+        --type-white: #334155;
+        --type-kraft: #7c2d12;
+        --toast-bg: #0f172a;
+        --toast-text: #ffffff;
+        --radius: 8px;
+        --radius-card: 10px;
+        --cell-pad-y: 10px;
+        --font-sans: 'Cairo', 'Segoe UI', Tahoma, Arial, sans-serif;
+        --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+      }
+
+      /* Theme Palettes */
+      html[data-theme='kraft'] {
+        --primary: #9a3412;
+        --primary-hover: #7c2d12;
+        --primary-soft: #fff7ed;
+        --primary-border: #fed7aa;
+      }
+      html[data-theme='emerald'] {
+        --primary: #065f46;
+        --primary-hover: #064e3b;
+        --primary-soft: #ecfdf5;
+        --primary-border: #a7f3d0;
+      }
+      html[data-theme='slate'] {
+        --primary: #334155;
+        --primary-hover: #1e293b;
+        --primary-soft: #f1f5f9;
+        --primary-border: #cbd5e1;
+      }
+      html[data-theme='indigo'] {
+        --primary: #3730a3;
+        --primary-hover: #312e81;
+        --primary-soft: #eef2ff;
+        --primary-border: #c7d2fe;
+      }
+
+      /* Dark Mode */
+      html[data-mode='dark'] {
+        --bg-canvas: #0b1120;
+        --bg-surface: #111827;
+        --bg-subtle: #1e293b;
+        --bg-hover: #1a2436;
+        --text-main: #f1f5f9;
+        --text-muted: #cbd5e1;
+        --text-soft: #94a3b8;
+        --border-line: #1f2937;
+        --border-strong: #334155;
+        --primary: #3b82f6;
+        --primary-hover: #2563eb;
+        --primary-soft: #172554;
+        --primary-border: #1e40af;
+        --success: #4ade80;
+        --success-soft: #052e16;
+        --warning: #fbbf24;
+        --warning-soft: #2a1d06;
+        --warning-border: #78350f;
+        --danger: #f87171;
+        --danger-soft: #2b1113;
+        --danger-border: #7f1d1d;
+        --type-test: #fbbf24;
+        --type-fakher: #60a5fa;
+        --type-white: #e2e8f0;
+        --type-kraft: #fb923c;
+        --toast-bg: #1e293b;
+        --toast-text: #f8fafc;
+      }
+      html[data-mode='dark'][data-theme='kraft'] {
+        --primary: #ea580c;
+        --primary-hover: #c2410c;
+        --primary-soft: #2d1609;
+        --primary-border: #7c2d12;
+      }
+      html[data-mode='dark'][data-theme='emerald'] {
+        --primary: #10b981;
+        --primary-hover: #059669;
+        --primary-soft: #062c22;
+        --primary-border: #065f46;
+      }
+      html[data-mode='dark'][data-theme='slate'] {
+        --primary: #64748b;
+        --primary-hover: #475569;
+        --primary-soft: #1e293b;
+        --primary-border: #475569;
+      }
+      html[data-mode='dark'][data-theme='indigo'] {
+        --primary: #6366f1;
+        --primary-hover: #4f46e5;
+        --primary-soft: #1e1b4b;
+        --primary-border: #4338ca;
+      }
+
+      /* UI Shapes */
+      html[data-shape='rounded'] {
+        --radius: 12px;
+        --radius-card: 16px;
+      }
+      html[data-shape='balanced'] {
+        --radius: 8px;
+        --radius-card: 10px;
+      }
+      html[data-shape='sharp'] {
+        --radius: 2px;
+        --radius-card: 2px;
+      }
+
+      /* Table Density */
+      html[data-density='compact'] {
+        --cell-pad-y: 6px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-canvas);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        font-size: 15px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font-family: inherit;
+        font-size: inherit;
+      }
+
+      .num {
+        font-family: var(--font-mono);
+        font-variant-numeric: tabular-nums;
+        direction: ltr;
+        display: inline-block;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* Buttons & Controls */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        min-height: 40px;
+        padding: 8px 16px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border-strong);
+        background: var(--bg-surface);
+        color: var(--text-main);
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+      }
+
+      .btn:hover {
+        background: var(--bg-subtle);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .btn:focus-visible,
+      input:focus-visible,
+      select:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #ffffff;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-hover);
+        border-color: var(--primary-hover);
+      }
+
+      .btn-danger {
+        color: var(--danger);
+        border-color: var(--danger-border);
+        background: var(--bg-surface);
+      }
+
+      .btn-danger:hover {
+        background: var(--danger-soft);
+      }
+
+      .btn-whatsapp {
+        background: #15803d;
+        border-color: #15803d;
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      .btn-whatsapp:hover {
+        background: #166534;
+        border-color: #166534;
+      }
+
+      .btn-sm {
+        min-height: 34px;
+        padding: 4px 10px;
+        font-size: 13px;
+      }
+
+      .btn-icon {
+        min-height: 34px;
+        min-width: 34px;
+        padding: 4px 8px;
+        font-size: 13px;
+      }
+
+      /* Inputs */
+      .field-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .field-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+
+      .input,
+      .select {
+        width: 100%;
+        min-height: 42px;
+        padding: 8px 12px;
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius);
+        background: var(--bg-surface);
+        color: var(--text-main);
+        font-size: 14px;
+        transition: border-color 0.15s ease;
+      }
+
+      .input:focus,
+      .select:focus {
+        border-color: var(--primary);
+      }
+
+      /* Login View */
+      .login-shell {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 440px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-line);
+        border-radius: var(--radius-card);
+        padding: 32px 28px;
+      }
+
+      .login-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .login-logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        object-fit: cover;
+        border: 1px solid var(--border-line);
+        flex-shrink: 0;
+      }
+
+      .login-title {
+        margin: 0 0 4px;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-main);
+        text-wrap: balance;
+      }
+
+      .login-sub {
+        margin: 0 0 22px;
+        font-size: 14px;
+        color: var(--text-muted);
+      }
+
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .form-error {
+        padding: 10px 12px;
+        border-radius: var(--radius);
+        background: var(--danger-soft);
+        border: 1px solid var(--danger-border);
+        color: var(--danger);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .login-footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--text-soft);
+      }
+
+      /* App Shell & Top Bar */
+      .app-shell {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border-line);
+      }
+
+      .topbar-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand-lockup {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid var(--border-line);
+        flex-shrink: 0;
+      }
+
+      .brand-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin: 0;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        overflow-x: auto;
+      }
+
+      .nav-link {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 6px 2px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-muted);
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--text-main);
+      }
+
+      .nav-link.active {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+      }
+
+      .topbar-user {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      .user-meta {
+        font-size: 13px;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+
+      /* Main Content */
+      .main-wrap {
+        flex: 1;
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 24px 20px 40px;
+      }
+
+      /* Summary Strip */
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+
+      .kpi-box {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-line);
+        border-radius: var(--radius-card);
+        padding: 16px 18px;
+      }
+
+      .kpi-label {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+      }
+
+      .kpi-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.2;
+      }
+
+      .kpi-sub {
+        margin-top: 6px;
+        font-size: 12px;
+        color: var(--text-soft);
+      }
+
+      /* Surface Panels */
+      .panel {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-line);
+        border-radius: var(--radius-card);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+
+      .panel-title {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .panel-desc {
+        margin: 2px 0 0;
+        font-size: 13px;
+        color: var(--text-soft);
+      }
+
+      /* Form Grids */
+      .form-grid-reels {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 12px;
+        align-items: end;
+      }
+
+      .form-grid-boxes {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 12px;
+        align-items: end;
+      }
+
+      .col-span-2 {
+        grid-column: span 2;
+      }
+      .col-span-3 {
+        grid-column: span 3;
+      }
+      .col-span-4 {
+        grid-column: span 4;
+      }
+      .col-span-6 {
+        grid-column: span 6;
+      }
+      .col-span-12 {
+        grid-column: span 12;
+      }
+
+      /* Segmented Controls */
+      .segmented {
+        display: inline-flex;
+        padding: 3px;
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-line);
+        border-radius: var(--radius);
+        gap: 3px;
+      }
+
+      .seg-btn {
+        border: none;
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: background-color 0.15s ease, color 0.15s ease;
+      }
+
+      .seg-btn.active {
+        background: var(--bg-surface);
+        color: var(--text-main);
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+      }
+
+      /* Live Calculation Preview */
+      .calc-bar {
+        margin-top: 14px;
+        padding: 10px 14px;
+        background: var(--primary-soft);
+        border: 1px solid var(--primary-border);
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 14px;
+        color: var(--primary);
+      }
+
+      /* Low Stock Alert Banner */
+      .alert-banner {
+        margin-bottom: 18px;
+        padding: 12px 16px;
+        background: var(--warning-soft);
+        border: 1px solid var(--warning-border);
+        border-radius: var(--radius-card);
+        color: var(--warning);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 14px;
+      }
+
+      /* Toolbar / Filters */
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+
+      .toolbar-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .search-input {
+        min-width: 220px;
+      }
+
+      /* Data Table */
+      .table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid var(--border-line);
+        border-radius: var(--radius);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--bg-surface);
+        font-size: 14px;
+      }
+
+      thead th {
+        background: var(--bg-subtle);
+        color: var(--text-muted);
+        font-weight: 700;
+        font-size: 13px;
+        text-align: right;
+        padding: 11px 12px;
+        border-bottom: 1px solid var(--border-line);
+        white-space: nowrap;
+      }
+
+      tbody td {
+        padding: var(--cell-pad-y) 12px;
+        border-bottom: 1px solid var(--border-line);
+        color: var(--text-main);
+        vertical-align: middle;
+      }
+
+      tbody tr:hover {
+        background: var(--bg-hover);
+      }
+
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      tfoot td {
+        background: var(--bg-subtle);
+        font-weight: 700;
+        padding: 11px 12px;
+        border-top: 1px solid var(--border-strong);
+      }
+
+      .td-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+      }
+
+      .type-text {
+        font-weight: 700;
+      }
+
+      .type-test {
+        color: var(--type-test);
+      }
+
+      .type-fakher {
+        color: var(--type-fakher);
+      }
+
+      .type-white {
+        color: var(--type-white);
+      }
+
+      .type-kraft {
+        color: var(--type-kraft);
+      }
+
+      .muted-inline {
+        color: var(--text-soft);
+        font-size: 12px;
+      }
+
+      .low-stock-note {
+        color: var(--warning);
+        font-size: 12px;
+        font-weight: 700;
+        margin-right: 6px;
+      }
+
+      /* Empty State */
+      .empty-state {
+        text-align: center;
+        padding: 40px 16px;
+        color: var(--text-muted);
+      }
+
+      .empty-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-main);
+        margin: 0 0 6px;
+      }
+
+      .empty-desc {
+        font-size: 14px;
+        color: var(--text-soft);
+        margin: 0 0 16px;
+      }
+
+      /* Breakdown Grid for Reports */
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .breakdown-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .breakdown-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-line);
+        font-size: 14px;
+      }
+
+      .breakdown-item:last-child {
+        border-bottom: none;
+      }
+
+      /* Modal */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        z-index: 50;
+      }
+
+      .modal-box {
+        width: 100%;
+        max-width: 460px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-line);
+        border-radius: var(--radius-card);
+        padding: 22px;
+      }
+
+      .modal-title {
+        margin: 0 0 6px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .modal-sub {
+        margin: 0 0 16px;
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      .modal-actions {
+        margin-top: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      /* Settings Grid & Switches */
+      .settings-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .setting-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-line);
+      }
+
+      .setting-row:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .setting-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .setting-desc {
+        font-size: 12px;
+        color: var(--text-soft);
+      }
+
+      .theme-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .theme-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 40px;
+        padding: 6px 12px;
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius);
+        background: var(--bg-surface);
+        color: var(--text-main);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .theme-chip.active {
+        border-color: var(--primary);
+        background: var(--primary-soft);
+        color: var(--primary);
+      }
+
+      .swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        display: inline-block;
+      }
+
+      .switch-check {
+        width: 44px;
+        height: 24px;
+        appearance: none;
+        background: var(--border-strong);
+        border-radius: 999px;
+        position: relative;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: background-color 0.15s ease;
+      }
+
+      .switch-check::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        transition: transform 0.15s ease;
+      }
+
+      .switch-check:checked {
+        background: var(--primary);
+      }
+
+      .switch-check:checked::after {
+        transform: translateX(-20px);
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 60;
+        background: var(--toast-bg);
+        color: var(--toast-text);
+        border: 1px solid var(--border-strong);
+        padding: 12px 16px;
+        border-radius: var(--radius);
+        font-size: 14px;
+        font-weight: 600;
+        max-width: 360px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+      }
+
+      .toast-kind {
+        font-size: 12px;
+        opacity: 0.85;
+        margin-bottom: 2px;
+      }
+
+      /* Footer */
+      .app-footer {
+        border-top: 1px solid var(--border-line);
+        background: var(--bg-surface);
+        padding: 14px 20px;
+      }
+
+      .footer-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--text-soft);
+      }
+
+      .print-only {
+        display: none;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .kpi-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .form-grid-reels {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .summary-grid,
+        .settings-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .topbar-inner {
+          flex-wrap: wrap;
+          gap: 10px;
+          padding: 10px 14px;
+        }
+        .nav-links {
+          order: 3;
+          width: 100%;
+          border-top: 1px solid var(--border-line);
+          padding-top: 8px;
+        }
+        .main-wrap {
+          padding: 16px 12px 32px;
+        }
+        .kpi-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+        .form-grid-reels,
+        .form-grid-boxes {
+          grid-template-columns: 1fr;
+        }
+        .col-span-2,
+        .col-span-3,
+        .col-span-4,
+        .col-span-6,
+        .col-span-12 {
+          grid-column: span 1;
+        }
+        .btn {
+          min-height: 44px;
+        }
+        .input,
+        .select {
+          min-height: 44px;
+        }
+      }
+
+      /* Print A4 */
+      @media print {
+        body {
+          background: #ffffff;
+          color: #000000;
+        }
+        .topbar,
+        .no-print,
+        .td-actions,
+        th.no-print,
+        td.no-print,
+        .app-footer {
+          display: none !important;
+        }
+        .print-only {
+          display: block !important;
+          margin-bottom: 16px;
+          padding-bottom: 10px;
+          border-bottom: 2px solid #000000;
+        }
+        .print-include.hidden {
+          display: block !important;
+        }
+        .panel {
+          border: none;
+          padding: 0;
+          margin-bottom: 24px;
+        }
+        .table-wrap {
+          border: 1px solid #000000;
+        }
+        thead th,
+        tbody td,
+        tfoot td {
+          border-color: #cbd5e1;
+          color: #000000;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1. صفحة تسجيل الدخول -->
+    <section id="loginView" class="login-shell">
+      <div class="login-card">
+        <div class="login-brand">
+          <img
+            src="assets/icon.png"
+            alt="أيقونة مخزنك في ايدك"
+            class="login-logo"
+            onerror="this.style.display='none'"
+          />
+          <div>
+            <h1 class="login-title">مخزنك في ايدك</h1>
+            <div class="setting-desc">نظام جرد بكر المضلع والكرتون العلب</div>
+          </div>
+        </div>
+        <p class="login-sub">سجّل بياناتك لبدء الجرد وحفظ سجل الحركات باسمك.</p>
+
+        <form id="loginForm" class="login-form" novalidate>
+          <div id="loginError" class="form-error hidden"></div>
+
+          <div class="field-group">
+            <label class="field-label" for="loginName">اسم المستخدم</label>
+            <input
+              id="loginName"
+              class="input"
+              type="text"
+              placeholder="مثال: أحمد محمود"
+              autocomplete="name"
+              required
+            />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="loginPhone">رقم التليفون</label>
+            <input
+              id="loginPhone"
+              class="input num"
+              style="text-align: right"
+              type="tel"
+              placeholder="01012345678"
+              autocomplete="tel"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 4px">
+            دخول إلى صفحة الجرد
+          </button>
+        </form>
+
+        <div class="login-footer">
+          <span>تطوير: محمد عصام</span>
+          <span> · </span>
+          <a id="loginWhatsappLink" href="#" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 600; text-decoration: none">تواصل واتساب</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. الصفحة الرئيسية للتطبيق -->
+    <div id="appView" class="app-shell hidden">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand-lockup">
+            <img
+              src="assets/icon.png"
+              alt="مخزنك في ايدك"
+              class="brand-icon"
+              onerror="this.style.display='none'"
+            />
+            <h1 class="brand-title">مخزنك في ايدك</h1>
+          </div>
+
+          <nav class="nav-links" aria-label="الأقسام الرئيسية">
+            <button type="button" class="nav-link active" data-tab="reels">بكر المضلع</button>
+            <button type="button" class="nav-link" data-tab="boxes">الكرتون العلب</button>
+            <button type="button" class="nav-link" data-tab="history">سجل الحركات</button>
+            <button type="button" class="nav-link" data-tab="reports">ملخص وتصدير</button>
+            <button type="button" class="nav-link" data-tab="settings">الإعدادات</button>
+          </nav>
+
+          <div class="topbar-user">
+            <span id="userDisplay" class="user-meta"></span>
+            <button type="button" id="logoutBtn" class="btn btn-sm">خروج</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-wrap">
+        <!-- ترويسة الطباعة -->
+        <div class="print-only">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px">
+            <div>
+              <h2 style="margin: 0 0 4px">كشف جرد مخزن بكر المضلع والكرتون العلب</h2>
+              <div id="printMeta" style="font-size: 13px"></div>
+            </div>
+            <div style="font-size: 13px; text-align: left">
+              <div>تطوير: محمد عصام</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- تنبيه نقص المخزون -->
+        <div id="lowStockBanner" class="alert-banner hidden no-print" role="status">
+          <div>
+            <strong>تنبيه نقص مخزون:</strong>
+            <span id="lowStockSummary"></span>
+          </div>
+          <button type="button" id="lowStockCheckBtn" class="btn btn-sm">مراجعة التنبيهات</button>
+        </div>
+
+        <!-- ملخص الأرصدة السريع -->
+        <section class="kpi-grid no-print" aria-label="ملخص المخزن">
+          <div class="kpi-box">
+            <div class="kpi-label">إجمالي عدد البكر</div>
+            <div class="kpi-value"><span id="kpiReelCount" class="num">0</span></div>
+            <div id="kpiReelSub" class="kpi-sub">بكرة مضلع بالمخزن</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-label">إجمالي وزن البكر</div>
+            <div class="kpi-value"><span id="kpiReelWeight" class="num">0</span> <span style="font-size: 14px; font-weight: 600">كجم</span></div>
+            <div id="kpiReelTon" class="kpi-sub">0.00 طن</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-label">إجمالي الكرتون العلب</div>
+            <div class="kpi-value"><span id="kpiBoxTotal" class="num">0</span></div>
+            <div id="kpiBoxBundles" class="kpi-sub">علبة جاهزة</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-label">عدد الأصناف المسجلة</div>
+            <div class="kpi-value"><span id="kpiItemsCount" class="num">0</span></div>
+            <div id="kpiItemsSplit" class="kpi-sub">0 بكر · 0 علب</div>
+          </div>
+        </section>
+
+        <!-- تبويب 1: جرد بكر المضلع -->
+        <section id="tab-reels" class="tab-section print-include">
+          <h3 class="print-only" style="margin: 0 0 8px">أولاً: جرد بكر المضلع</h3>
+          <div class="panel no-print">
+            <div class="panel-header">
+              <div>
+                <h2 id="reelFormTitle" class="panel-title">إضافة بكر مضلع للجرد</h2>
+                <p class="panel-desc">اختر نوع البكرة وأدخل العرض (سم) والجراماج (جم) والوزن والعدد.</p>
+              </div>
+              <button type="button" id="reelCancelEditBtn" class="btn btn-sm hidden">إلغاء التعديل</button>
+            </div>
+
+            <form id="reelForm" class="form-grid-reels">
+              <input type="hidden" id="reelEditId" value="" />
+
+              <div class="field-group">
+                <label class="field-label" for="reelType">نوع البكرة</label>
+                <select id="reelType" class="select">
+                  <option value="تست">تست (Test Liner)</option>
+                  <option value="فاخر">فاخر (Fluting / عالي)</option>
+                  <option value="أبيض">أبيض (White Top)</option>
+                  <option value="كرافت">كرافت (Kraft)</option>
+                  <option value="دوبلكس">دوبلكس (Duplex)</option>
+                  <option value="أخرى">نوع آخر...</option>
+                </select>
+              </div>
+
+              <div id="reelCustomTypeWrap" class="field-group hidden">
+                <label class="field-label" for="reelCustomType">اسم النوع</label>
+                <input id="reelCustomType" class="input" type="text" placeholder="اكتب النوع" />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="reelWidth">العرض (سم)</label>
+                <input
+                  id="reelWidth"
+                  class="input num"
+                  style="text-align: right"
+                  type="number"
+                  step="0.5"
+                  min="1"
+                  placeholder="مثال: 120"
+                  required
+                />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="reelGsm">الجراماج (جم)</label>
+                <input
+                  id="reelGsm"
+                  class="input num"
+                  style="text-align: right"
+                  type="number"
+                  step="1"
+                  min="1"
+                  placeholder="مثال: 150"
+                  required
+                />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="reelCount">العدد (بكرة)</label>
+                <input
+                  id="reelCount"
+                  class="input num"
+                  style="text-align: right"
+                  type="number"
+                  step="1"
+                  min="0"
+                  placeholder="مثال: 4"
+                  required
+                />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="reelWeight">الوزن الكلي (كجم)</label>
+                <input
+                  id="reelWeight"
+                  class="input num"
+                  style="text-align: right"
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  placeholder="مثال: 2450"
+                  required
+                />
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="reelNote">ملاحظات / رقم البكرة</label>
+                <input
+                  id="reelNote"
+                  class="input"
+                  type="text"
+                  placeholder="اختياري: مورد أو مكان"
+                />
+              </div>
+
+              <div class="field-group" style="grid-column: 1 / -1; display: flex; flex-direction: row; justify-content: flex-end; gap: 10px">
+                <button type="submit" id="reelSubmitBtn" class="btn btn-primary">إضافة البكر للجرد</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel">
+            <div class="toolbar no-print">
+              <div class="toolbar-group">
+                <div class="segmented" id="reelTypeFilter" role="tablist" aria-label="فلترة نوع البكر">
+                  <button type="button" class="seg-btn active" data-type="الكل">الكل</button>
+                  <button type="button" class="seg-btn" data-type="تست">تست</button>
+                  <button type="button" class="seg-btn" data-type="فاخر">فاخر</button>
+                  <button type="button" class="seg-btn" data-type="أبيض">أبيض</button>
+                  <button type="button" class="seg-btn" data-type="كرافت">كرافت</button>
+                  <button type="button" class="seg-btn" data-type="أخرى">أخرى</button>
+                </div>
+              </div>
+              <div class="toolbar-group">
+                <input
+                  id="reelSearch"
+                  class="input search-input"
+                  type="search"
+                  placeholder="بحث بالنوع، العرض سم، الجرام، أو ملاحظة..."
+                />
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>النوع</th>
+                    <th>العرض (سم)</th>
+                    <th>الجراماج (جم)</th>
+                    <th>العدد (بكرة)</th>
+                    <th>الوزن (كجم)</th>
+                    <th>متوسط البكرة</th>
+                    <th>ملاحظات</th>
+                    <th class="no-print">إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="reelsTableBody"></tbody>
+                <tfoot id="reelsTableFoot" class="hidden">
+                  <tr>
+                    <td colspan="3">إجمالي المعروض</td>
+                    <td><span id="reelsFootCount" class="num">0</span> بكرة</td>
+                    <td><span id="reelsFootWeight" class="num">0</span> كجم</td>
+                    <td colspan="3"></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <div id="reelsEmpty" class="empty-state hidden">
+              <p class="empty-title">لا توجد بكر مضلع مسجلة حالياً</p>
+              <p class="empty-desc">أضف أول بكرة من النموذج بالأعلى أو حمّل أمثلة جاهزة للتجربة.</p>
+              <button type="button" id="loadSampleReelsBtn" class="btn btn-sm">تحميل أمثلة بكر للتجربة</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- تبويب 2: جرد الكرتون العلب -->
+        <section id="tab-boxes" class="tab-section hidden print-include">
+          <h3 class="print-only" style="margin: 12px 0 8px">ثانياً: جرد الكرتون العلب</h3>
+          <div class="panel no-print">
+            <div class="panel-header">
+              <div>
+                <h2 id="boxFormTitle" class="panel-title">إضافة كرتون علب للجرد</h2>
+                <p class="panel-desc">أدخل المقاس (الطول × العرض × الارتفاع سم) واختر الجرد بالربطة أو عدد فردي.</p>
+              </div>
+              <button type="button" id="boxCancelEditBtn" class="btn btn-sm hidden">إلغاء التعديل</button>
+            </div>
+
+            <form id="boxForm">
+              <input type="hidden" id="boxEditId" value="" />
+
+              <div class="form-grid-boxes">
+                <div class="field-group col-span-3">
+                  <label class="field-label" for="boxName">اسم الصنف / العميل</label>
+                  <input
+                    id="boxName"
+                    class="input"
+                    type="text"
+                    placeholder="مثال: علبة شحن وسط"
+                    required
+                  />
+                </div>
+
+                <div class="field-group col-span-2">
+                  <label class="field-label" for="boxLength">الطول (سم)</label>
+                  <input
+                    id="boxLength"
+                    class="input num"
+                    style="text-align: right"
+                    type="number"
+                    step="0.5"
+                    min="1"
+                    placeholder="40"
+                    required
+                  />
+                </div>
+
+                <div class="field-group col-span-2">
+                  <label class="field-label" for="boxWidth">العرض (سم)</label>
+                  <input
+                    id="boxWidth"
+                    class="input num"
+                    style="text-align: right"
+                    type="number"
+                    step="0.5"
+                    min="1"
+                    placeholder="30"
+                    required
+                  />
+                </div>
+
+                <div class="field-group col-span-2">
+                  <label class="field-label" for="boxHeight">الارتفاع (سم)</label>
+                  <input
+                    id="boxHeight"
+                    class="input num"
+                    style="text-align: right"
+                    type="number"
+                    step="0.5"
+                    min="1"
+                    placeholder="25"
+                    required
+                  />
+                </div>
+
+                <div class="field-group col-span-3">
+                  <label class="field-label">طريقة الجرد</label>
+                  <div class="segmented" id="boxModeToggle" style="width: 100%; justify-content: stretch">
+                    <button type="button" class="seg-btn active" data-mode="bundle" style="flex: 1">بالربطة</button>
+                    <button type="button" class="seg-btn" data-mode="single" style="flex: 1">عدد فردي</button>
+                  </div>
+                </div>
+
+                <!-- حقول الربطة -->
+                <div id="bundleInputsWrap" class="col-span-6" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+                  <div class="field-group">
+                    <label class="field-label" for="boxBundles">عدد الربط</label>
+                    <input
+                      id="boxBundles"
+                      class="input num"
+                      style="text-align: right"
+                      type="number"
+                      step="1"
+                      min="0"
+                      value="1"
+                    />
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label" for="boxPerBundle">العلب في الربطة</label>
+                    <input
+                      id="boxPerBundle"
+                      class="input num"
+                      style="text-align: right"
+                      type="number"
+                      step="1"
+                      min="1"
+                      value="25"
+                    />
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label" for="boxLooseInBundle">علب فردية إضافية</label>
+                    <input
+                      id="boxLooseInBundle"
+                      class="input num"
+                      style="text-align: right"
+                      type="number"
+                      step="1"
+                      min="0"
+                      value="0"
+                    />
+                  </div>
+                </div>
+
+                <!-- حقل العدد الفردي -->
+                <div id="singleInputWrap" class="field-group col-span-6 hidden">
+                  <label class="field-label" for="boxSingleCount">العدد الفردي (كم علبة)</label>
+                  <input
+                    id="boxSingleCount"
+                    class="input num"
+                    style="text-align: right"
+                    type="number"
+                    step="1"
+                    min="0"
+                    value="0"
+                  />
+                </div>
+
+                <div class="field-group col-span-4">
+                  <label class="field-label" for="boxNote">ملاحظات (اختياري)</label>
+                  <input
+                    id="boxNote"
+                    class="input"
+                    type="text"
+                    placeholder="مثال: 3 طبقات سادة / مطبوع"
+                  />
+                </div>
+
+                <div class="field-group col-span-2">
+                  <button type="submit" id="boxSubmitBtn" class="btn btn-primary" style="width: 100%">
+                    إضافة العلب
+                  </button>
+                </div>
+              </div>
+
+              <div class="calc-bar">
+                <span>حساب تلقائي للصنف الحالي:</span>
+                <strong>إجمالي <span id="boxLiveTotal" class="num" style="font-size: 16px">25</span> علبة</strong>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel">
+            <div class="toolbar no-print">
+              <div class="toolbar-group">
+                <div class="segmented" id="boxModeFilter">
+                  <button type="button" class="seg-btn active" data-filter="all">الكل</button>
+                  <button type="button" class="seg-btn" data-filter="bundle">بالربطة</button>
+                  <button type="button" class="seg-btn" data-filter="single">عدد فردي</button>
+                </div>
+              </div>
+              <div class="toolbar-group">
+                <input
+                  id="boxSearch"
+                  class="input search-input"
+                  type="search"
+                  placeholder="بحث باسم الصنف أو المقاس (مثل 40×30)..."
+                />
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>الصنف</th>
+                    <th>المقاس (ط × ع × إ سم)</th>
+                    <th>طريقة الجرد</th>
+                    <th>التفصيل</th>
+                    <th>إجمالي العلب</th>
+                    <th>ملاحظات</th>
+                    <th class="no-print">إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="boxesTableBody"></tbody>
+                <tfoot id="boxesTableFoot" class="hidden">
+                  <tr>
+                    <td colspan="4">إجمالي المعروض</td>
+                    <td><span id="boxesFootTotal" class="num">0</span> علبة</td>
+                    <td colspan="2"></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <div id="boxesEmpty" class="empty-state hidden">
+              <p class="empty-title">لا توجد علب كرتون مسجلة حالياً</p>
+              <p class="empty-desc">أضف أصناف العلب بالمقاس والربطة أو العدد الفردي من الأعلى.</p>
+              <button type="button" id="loadSampleBoxesBtn" class="btn btn-sm">تحميل أمثلة علب للتجربة</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- تبويب 3: سجل الحركات -->
+        <section id="tab-history" class="tab-section hidden">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">سجل حركات الجرد</h2>
+                <p class="panel-desc">توثيق كل عملية إضافة أو وارد أو منصرف أو تعديل باسم المستخدم.</p>
+              </div>
+              <button type="button" id="clearHistoryBtn" class="btn btn-sm btn-danger no-print">مسح السجل</button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>الوقت والتاريخ</th>
+                    <th>القسم</th>
+                    <th>العملية</th>
+                    <th>التفاصيل</th>
+                    <th>بواسطة</th>
+                  </tr>
+                </thead>
+                <tbody id="historyTableBody"></tbody>
+              </table>
+            </div>
+
+            <div id="historyEmpty" class="empty-state hidden">
+              <p class="empty-title">سجل الحركات فارغ</p>
+              <p class="empty-desc">أي إضافة أو سحب أو تعديل في البكر أو العلب سيظهر هنا تلقائياً.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- تبويب 4: الملخص والتصدير والنسخ الاحتياطي -->
+        <section id="tab-reports" class="tab-section hidden print-include">
+          <div class="panel no-print">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">تصدير وطباعة كشف الجرد</h2>
+                <p class="panel-desc">استخراج ملفات إكسل (CSV) أو طباعة تقرير الجرد أو حفظ نسخة احتياطية.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 10px">
+              <button type="button" id="printReportBtn" class="btn btn-primary">طباعة كشف الجرد (A4)</button>
+              <button type="button" id="exportReelsCsvBtn" class="btn">تصدير البكر (Excel / CSV)</button>
+              <button type="button" id="exportBoxesCsvBtn" class="btn">تصدير العلب (Excel / CSV)</button>
+              <button type="button" id="backupJsonBtn" class="btn">حفظ نسخة احتياطية (JSON)</button>
+              <label class="btn" style="cursor: pointer">
+                استرجاع نسخة احتياطية
+                <input id="restoreJsonInput" type="file" accept=".json,application/json" class="hidden" />
+              </label>
+              <button type="button" id="resetAllBtn" class="btn btn-danger">تصفير كل بيانات الجرد</button>
+            </div>
+          </div>
+
+          <div class="summary-grid">
+            <div class="panel">
+              <div class="panel-header">
+                <h3 class="panel-title">توزيع بكر المضلع حسب النوع</h3>
+              </div>
+              <ul id="reelBreakdownList" class="breakdown-list"></ul>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <h3 class="panel-title">ملخص العلب الكرتون</h3>
+              </div>
+              <ul id="boxBreakdownList" class="breakdown-list"></ul>
+            </div>
+          </div>
+        </section>
+        <!-- تبويب 5: الإعدادات -->
+        <section id="tab-settings" class="tab-section hidden no-print">
+          <div class="settings-grid">
+            <!-- المظهر والثيم والأشكال -->
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2 class="panel-title">المظهر والثيم والأشكال</h2>
+                  <p class="panel-desc">تخصيص الوضع الليلي والنهاري والألوان وشكل الحواف.</p>
+                </div>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">الوضع (ليلي / نهاري)</div>
+                  <div class="setting-desc">تبديل ألوان الشاشة للراحة أثناء العمل الليلي بالمخزن.</div>
+                </div>
+                <div class="segmented" id="modeToggle">
+                  <button type="button" class="seg-btn active" data-mode="light">نهاري</button>
+                  <button type="button" class="seg-btn" data-mode="dark">ليلي</button>
+                </div>
+              </div>
+
+              <div class="setting-row" style="display: block">
+                <div class="setting-title">ثيم الألوان</div>
+                <div class="theme-options" id="themePicker">
+                  <button type="button" class="theme-chip active" data-theme="navy">
+                    <span class="swatch" style="background: #1e3a5f"></span> كلاسيكي أزرق
+                  </button>
+                  <button type="button" class="theme-chip" data-theme="kraft">
+                    <span class="swatch" style="background: #9a3412"></span> ورق كرافت
+                  </button>
+                  <button type="button" class="theme-chip" data-theme="emerald">
+                    <span class="swatch" style="background: #065f46"></span> زمردي
+                  </button>
+                  <button type="button" class="theme-chip" data-theme="slate">
+                    <span class="swatch" style="background: #334155"></span> فحمي
+                  </button>
+                  <button type="button" class="theme-chip" data-theme="indigo">
+                    <span class="swatch" style="background: #3730a3"></span> نيلي
+                  </button>
+                </div>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">شكل الحواف والأزرار</div>
+                  <div class="setting-desc">اختر استدارة الكروت والحقول.</div>
+                </div>
+                <div class="segmented" id="shapeToggle">
+                  <button type="button" class="seg-btn" data-shape="rounded">ناعم</button>
+                  <button type="button" class="seg-btn active" data-shape="balanced">متوازن</button>
+                  <button type="button" class="seg-btn" data-shape="sharp">حاد</button>
+                </div>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">حجم صفوف الجدول</div>
+                  <div class="setting-desc">اختر بين العرض المريح أو المضغوط للجرد السريع.</div>
+                </div>
+                <div class="segmented" id="densityToggle">
+                  <button type="button" class="seg-btn active" data-density="normal">مريح</button>
+                  <button type="button" class="seg-btn" data-density="compact">مضغوط</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- إعدادات الإشعارات -->
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2 class="panel-title">الإشعارات والتنبيهات</h2>
+                  <p class="panel-desc">إشعارات لكل حركة (إضافة، سحب، تعديل، تصدير، ونقص مخزون).</p>
+                </div>
+                <button type="button" id="testNotifyBtn" class="btn btn-sm">تجربة إشعار</button>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">إشعارات الشاشة لكل العمليات</div>
+                  <div class="setting-desc">إظهار إشعار فوري عند الإضافة والحذف والوارد والمنصرف والتصدير.</div>
+                </div>
+                <input id="optNotifToast" class="switch-check" type="checkbox" checked />
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">صوت التنبيه</div>
+                  <div class="setting-desc">تشغيل نغمة خفيفة عند حفظ أي حركة أو تنبيه نقص مخزون.</div>
+                </div>
+                <input id="optNotifSound" class="switch-check" type="checkbox" checked />
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">إشعارات المتصفح / الموبايل</div>
+                  <div class="setting-desc" id="browserNotifStatus">إرسال إشعار للنظام عند الحركات المهمة ونقص المخزون.</div>
+                </div>
+                <button type="button" id="enableBrowserNotifBtn" class="btn btn-sm">تفعيل</button>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">تنبيه نقص مخزون البكر (أقل من أو يساوي)</div>
+                  <div class="setting-desc">تنبيه تلقائي إذا قلّ عدد البكر أو الوزن عن الحد المحدد.</div>
+                </div>
+                <div style="display: flex; gap: 8px; width: 170px">
+                  <input id="optLowReelCount" class="input num" style="text-align: right; min-height: 36px" type="number" min="0" placeholder="بكر" title="حد البكر" />
+                  <input id="optLowReelWeight" class="input num" style="text-align: right; min-height: 36px" type="number" min="0" placeholder="كجم" title="حد الوزن كجم" />
+                </div>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">تنبيه نقص مخزون العلب (أقل من أو يساوي)</div>
+                  <div class="setting-desc">تنبيه تلقائي إذا قلّ إجمالي العلب لصنف عن هذا العدد.</div>
+                </div>
+                <input id="optLowBoxCount" class="input num" style="text-align: right; width: 100px; min-height: 36px" type="number" min="0" />
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <!-- مركز أحدث الإشعارات -->
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2 class="panel-title">آخر الإشعارات</h2>
+                  <p class="panel-desc">ملخص سريع لآخر التنبيهات الصادرة داخل الجلسة.</p>
+                </div>
+                <button type="button" id="clearNotifLogBtn" class="btn btn-sm">مسح التنبيهات</button>
+              </div>
+              <ul id="notifCenterList" class="breakdown-list"></ul>
+            </div>
+
+            <!-- التواصل مع المطور -->
+            <div class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2 class="panel-title">عن التطبيق والتواصل مع المطور</h2>
+                  <p class="panel-desc">تواصل مباشر لطلب تعديلات أو دعم فني.</p>
+                </div>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">المطور</div>
+                  <div class="setting-desc">تصميم وبرمجة: محمد عصام</div>
+                </div>
+                <a id="devWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                  تواصل مع المطور عبر واتساب
+                </a>
+              </div>
+
+              <div class="setting-row">
+                <div>
+                  <div class="setting-title">حول حفظ البيانات</div>
+                  <div class="setting-desc">جميع بيانات الجرد والإعدادات محفوظة محلياً على جهازك، ويمكنك أخذ نسخة احتياطية من تبويب ملخص وتصدير.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <div class="footer-inner">
+          <span>مخزنك في ايدك · جرد بكر المضلع والكرتون العلب</span>
+          <span>
+            تطوير: <strong>محمد عصام</strong> ·
+            <a id="footerWhatsappLink" href="#" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 600; text-decoration: none">تواصل عبر واتساب</a>
+          </span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- نافذة حركة سريعة (وارد / منصرف) -->
+    <div id="moveModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="moveModalTitle">
+      <div class="modal-box">
+        <h3 id="moveModalTitle" class="modal-title">تسجيل حركة مخزن</h3>
+        <p id="moveModalSub" class="modal-sub"></p>
+
+        <form id="moveForm" style="display: flex; flex-direction: column; gap: 14px">
+          <div class="segmented" id="moveDirToggle" style="width: 100%">
+            <button type="button" class="seg-btn active" data-dir="in" style="flex: 1">وارد (+ إضافة)</button>
+            <button type="button" class="seg-btn" data-dir="out" style="flex: 1">منصرف (- سحب)</button>
+          </div>
+
+          <!-- حقول حركة البكر -->
+          <div id="moveReelFields" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+            <div class="field-group">
+              <label class="field-label" for="moveReelCount">عدد البكر</label>
+              <input id="moveReelCount" class="input num" style="text-align: right" type="number" min="0" step="1" value="1" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="moveReelWeight">الوزن (كجم)</label>
+              <input id="moveReelWeight" class="input num" style="text-align: right" type="number" min="0" step="0.1" value="0" />
+            </div>
+          </div>
+
+          <!-- حقول حركة العلب -->
+          <div id="moveBoxFields" class="hidden" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+            <div class="field-group">
+              <label class="field-label" for="moveBoxBundles">عدد الربط</label>
+              <input id="moveBoxBundles" class="input num" style="text-align: right" type="number" min="0" step="1" value="0" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="moveBoxLoose">عدد فردي (علب)</label>
+              <input id="moveBoxLoose" class="input num" style="text-align: right" type="number" min="0" step="1" value="0" />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="moveNote">ملاحظة الحركة (اختياري)</label>
+            <input id="moveNote" class="input" type="text" placeholder="مثال: تشغيل ماكينة المضلع / تسليم عميل" />
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" id="moveCancelBtn" class="btn">إلغاء</button>
+            <button type="submit" class="btn btn-primary">تأكيد الحركة</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- نافذة تأكيد حذف أو تصفير -->
+    <div id="confirmModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <div class="modal-box">
+        <h3 id="confirmTitle" class="modal-title">تأكيد الإجراء</h3>
+        <p id="confirmMessage" class="modal-sub"></p>
+        <div class="modal-actions">
+          <button type="button" id="confirmCancelBtn" class="btn">إلغاء</button>
+          <button type="button" id="confirmOkBtn" class="btn btn-danger">تأكيد</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite">
+      <div id="toastKind" class="toast-kind"></div>
+      <div id="toastMsg"></div>
+    </div>
+
+    <script>
+      (function () {
+        'use strict';
+
+        const STORAGE_KEYS = {
+          user: 'corrugated_inv_user_v1',
+          reels: 'corrugated_inv_reels_v1',
+          boxes: 'corrugated_inv_boxes_v1',
+          history: 'corrugated_inv_history_v1',
+          settings: 'corrugated_inv_settings_v1',
+          notifs: 'corrugated_inv_notifs_v1',
+        };
+
+        const DEFAULT_SETTINGS = {
+          mode: 'light',
+          theme: 'navy',
+          shape: 'balanced',
+          density: 'normal',
+          notifToast: true,
+          notifSound: true,
+          notifBrowser: false,
+          lowReelCount: 2,
+          lowReelWeight: 500,
+          lowBoxCount: 50,
+        };
+
+        const state = {
+          user: null,
+          reels: [],
+          boxes: [],
+          history: [],
+          notifs: [],
+          settings: { ...DEFAULT_SETTINGS },
+          activeTab: 'reels',
+          reelFilterType: 'الكل',
+          reelSearch: '',
+          boxFilterMode: 'all',
+          boxSearch: '',
+          boxFormMode: 'bundle',
+          moveContext: null,
+          moveDir: 'in',
+          confirmCallback: null,
+        };
+
+        // Helpers
+        const $ = (id) => document.getElementById(id);
+
+        function getDeveloperWaUrl() {
+          const code = atob('MjAxMjIwOTczNDgx');
+          const text = encodeURIComponent('السلام عليكم، أتواصل معك بخصوص تطبيق جرد بكر المضلع والعلب (مخزنك في ايدك)');
+          return 'https://wa.me/' + code + '?text=' + text;
+        }
+
+        function bindWhatsappLinks() {
+          const url = getDeveloperWaUrl();
+          ['loginWhatsappLink', 'devWhatsappBtn', 'footerWhatsappLink'].forEach((id) => {
+            const el = $(id);
+            if (el) el.setAttribute('href', url);
+          });
+        }
+
+        function toWesternDigits(str) {
+          return String(str || '').replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+        }
+
+        function uid() {
+          return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7);
+        }
+
+        function fmtNum(n, decimals = 0) {
+          const val = Number(n) || 0;
+          return val.toLocaleString('en-US', {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals,
+          });
+        }
+
+        function fmtDate(iso) {
+          try {
+            const d = new Date(iso);
+            return d.toLocaleString('ar-EG', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+            });
+          } catch {
+            return iso;
+          }
+        }
+
+        function escapeHtml(str) {
+          return String(str || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+        }
+
+        // Audio Chime via Web Audio API (no external files)
+        let audioCtx = null;
+        function playTone(kind) {
+          if (!state.settings.notifSound) return;
+          try {
+            const Ctx = window.AudioContext || window.webkitAudioContext;
+            if (!Ctx) return;
+            if (!audioCtx) audioCtx = new Ctx();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (kind === 'warning' || kind === 'error') {
+              osc.type = 'triangle';
+              osc.frequency.setValueAtTime(520, now);
+              osc.frequency.setValueAtTime(420, now + 0.11);
+              gain.gain.setValueAtTime(0.08, now);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+              osc.start(now);
+              osc.stop(now + 0.25);
+            } else {
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(640, now);
+              osc.frequency.setValueAtTime(840, now + 0.08);
+              gain.gain.setValueAtTime(0.06, now);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+              osc.start(now);
+              osc.stop(now + 0.19);
+            }
+          } catch {
+            // Ignore audio restrictions
+          }
+        }
+
+        let toastTimer = null;
+        function notify(msg, kind = 'info', title = '') {
+          const kindLabels = {
+            success: 'تم بنجاح',
+            warning: 'تنبيه مخزون',
+            error: 'تنبيه',
+            info: 'إشعار',
+          };
+          const label = title || kindLabels[kind] || 'إشعار';
+
+          state.notifs.unshift({
+            id: uid(),
+            at: new Date().toISOString(),
+            kind,
+            label,
+            msg,
+          });
+          if (state.notifs.length > 60) state.notifs = state.notifs.slice(0, 60);
+          localStorage.setItem(STORAGE_KEYS.notifs, JSON.stringify(state.notifs));
+          if (state.activeTab === 'settings') renderNotifCenter();
+
+          if (state.settings.notifToast) {
+            const el = $('toast');
+            $('toastKind').textContent = label;
+            $('toastMsg').textContent = msg;
+            el.classList.remove('hidden');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+              el.classList.add('hidden');
+            }, 3000);
+          }
+
+          playTone(kind);
+
+          if (state.settings.notifBrowser && 'Notification' in window && Notification.permission === 'granted') {
+            try {
+              new Notification('مخزنك في ايدك · ' + label, {
+                body: msg,
+                icon: 'assets/icon.png',
+              });
+            } catch {
+              // Ignore browser notification constraints
+            }
+          }
+        }
+
+        function showToast(msg, kind = 'info', title = '') {
+          notify(msg, kind, title);
+        }
+
+        function openConfirm(title, message, onConfirm) {
+          $('confirmTitle').textContent = title;
+          $('confirmMessage').textContent = message;
+          state.confirmCallback = onConfirm;
+          $('confirmModal').classList.remove('hidden');
+        }
+
+        function closeConfirm() {
+          $('confirmModal').classList.add('hidden');
+          state.confirmCallback = null;
+        }
+
+        function applySettings() {
+          const s = state.settings;
+          const root = document.documentElement;
+          root.setAttribute('data-mode', s.mode || 'light');
+          root.setAttribute('data-theme', s.theme || 'navy');
+          root.setAttribute('data-shape', s.shape || 'balanced');
+          root.setAttribute('data-density', s.density || 'normal');
+        }
+
+        function saveSettings() {
+          localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(state.settings));
+          applySettings();
+        }
+
+        function loadState() {
+          try {
+            const u = localStorage.getItem(STORAGE_KEYS.user);
+            const r = localStorage.getItem(STORAGE_KEYS.reels);
+            const b = localStorage.getItem(STORAGE_KEYS.boxes);
+            const h = localStorage.getItem(STORAGE_KEYS.history);
+            const s = localStorage.getItem(STORAGE_KEYS.settings);
+            const n = localStorage.getItem(STORAGE_KEYS.notifs);
+            state.user = u ? JSON.parse(u) : null;
+            state.reels = r ? JSON.parse(r) : [];
+            state.boxes = b ? JSON.parse(b) : [];
+            state.history = h ? JSON.parse(h) : [];
+            state.settings = s ? { ...DEFAULT_SETTINGS, ...JSON.parse(s) } : { ...DEFAULT_SETTINGS };
+            state.notifs = n ? JSON.parse(n) : [];
+          } catch {
+            state.user = null;
+            state.reels = [];
+            state.boxes = [];
+            state.history = [];
+            state.settings = { ...DEFAULT_SETTINGS };
+            state.notifs = [];
+          }
+          applySettings();
+        }
+
+        function saveData() {
+          localStorage.setItem(STORAGE_KEYS.reels, JSON.stringify(state.reels));
+          localStorage.setItem(STORAGE_KEYS.boxes, JSON.stringify(state.boxes));
+          localStorage.setItem(STORAGE_KEYS.history, JSON.stringify(state.history.slice(0, 250)));
+        }
+
+        function logAction(section, action, details) {
+          state.history.unshift({
+            id: uid(),
+            at: new Date().toISOString(),
+            section,
+            action,
+            details,
+            userName: state.user ? state.user.name : 'مستخدم',
+            userPhone: state.user ? state.user.phone : '',
+          });
+          if (state.history.length > 250) {
+            state.history = state.history.slice(0, 250);
+          }
+        }
+
+        // Auth Flow
+        function renderAuth() {
+          if (state.user && state.user.name && state.user.phone) {
+            $('loginView').classList.add('hidden');
+            $('appView').classList.remove('hidden');
+            $('userDisplay').innerHTML =
+              escapeHtml(state.user.name) + ' · <span class="num">' + escapeHtml(state.user.phone) + '</span>';
+            renderAll();
+          } else {
+            $('appView').classList.add('hidden');
+            $('loginView').classList.remove('hidden');
+            $('loginName').focus();
+          }
+        }
+
+        $('loginForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = $('loginName').value.trim();
+          const phone = toWesternDigits($('loginPhone').value).replace(/[^\d+]/g, '').trim();
+          const errBox = $('loginError');
+
+          if (name.length < 2) {
+            errBox.textContent = 'يرجى إدخال اسم المستخدم بشكل صحيح.';
+            errBox.classList.remove('hidden');
+            return;
+          }
+          if (phone.length < 8) {
+            errBox.textContent = 'يرجى إدخال رقم تليفون صحيح (8 أرقام على الأقل).';
+            errBox.classList.remove('hidden');
+            return;
+          }
+
+          errBox.classList.add('hidden');
+          state.user = { name, phone };
+          localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(state.user));
+          renderAuth();
+          showToast('أهلاً بك يا ' + name);
+        });
+
+        $('logoutBtn').addEventListener('click', () => {
+          openConfirm('تسجيل الخروج', 'هل تريد الخروج والرجوع لشاشة تسجيل الدخول؟ بيانات الجرد ستبقى محفوظة.', () => {
+            localStorage.removeItem(STORAGE_KEYS.user);
+            state.user = null;
+            $('loginForm').reset();
+            renderAuth();
+          });
+        });
+
+        // Navigation Tabs
+        function switchTab(tab) {
+          state.activeTab = tab;
+          document.querySelectorAll('.nav-link').forEach((b) => b.classList.toggle('active', b.getAttribute('data-tab') === tab));
+          document.querySelectorAll('.tab-section').forEach((sec) => {
+            sec.classList.toggle('hidden', sec.id !== 'tab-' + tab);
+          });
+          if (tab === 'reports') renderReports();
+          if (tab === 'history') renderHistory();
+          if (tab === 'settings') renderSettingsUI();
+        }
+
+        document.querySelectorAll('.nav-link').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            switchTab(btn.getAttribute('data-tab'));
+          });
+        });
+
+        // Low Stock Checks & KPIs
+        function isReelLow(r) {
+          const minC = Number(state.settings.lowReelCount) || 0;
+          const minW = Number(state.settings.lowReelWeight) || 0;
+          return (minC > 0 && Number(r.count) <= minC) || (minW > 0 && Number(r.weightKg) <= minW);
+        }
+
+        function isBoxLow(b) {
+          const minB = Number(state.settings.lowBoxCount) || 0;
+          return minB > 0 && getBoxTotal(b) <= minB;
+        }
+
+        function renderLowStockBanner() {
+          const lowReels = state.reels.filter(isReelLow);
+          const lowBoxes = state.boxes.filter(isBoxLow);
+          const totalLow = lowReels.length + lowBoxes.length;
+          const banner = $('lowStockBanner');
+
+          if (totalLow === 0) {
+            banner.classList.add('hidden');
+            return;
+          }
+
+          const parts = [];
+          if (lowReels.length > 0) parts.push(`${fmtNum(lowReels.length)} صنف بكر وصل للحد الأدنى`);
+          if (lowBoxes.length > 0) parts.push(`${fmtNum(lowBoxes.length)} صنف علب وصل للحد الأدنى`);
+          $('lowStockSummary').textContent = parts.join(' · ');
+          banner.classList.remove('hidden');
+        }
+
+        $('lowStockCheckBtn').addEventListener('click', () => {
+          const lowReels = state.reels.filter(isReelLow);
+          const lowBoxes = state.boxes.filter(isBoxLow);
+          const names = [
+            ...lowReels.map((r) => `${r.type} ${r.widthCm}سم (${r.count} بكرة)`),
+            ...lowBoxes.map((b) => `${b.name} (${getBoxTotal(b)} علبة)`),
+          ];
+          notify(names.slice(0, 3).join('، ') || 'راجع الأرصدة المنخفضة', 'warning', 'الأصناف القريبة من النفاد');
+          switchTab(lowReels.length > 0 ? 'reels' : 'boxes');
+        });
+
+        function renderKPIs() {
+          const totalReelCount = state.reels.reduce((sum, r) => sum + (Number(r.count) || 0), 0);
+          const totalReelWeight = state.reels.reduce((sum, r) => sum + (Number(r.weightKg) || 0), 0);
+          const totalBoxes = state.boxes.reduce((sum, b) => sum + getBoxTotal(b), 0);
+          const totalBundles = state.boxes.reduce((sum, b) => sum + (b.mode === 'bundle' ? Number(b.bundleCount) || 0 : 0), 0);
+
+          $('kpiReelCount').textContent = fmtNum(totalReelCount);
+          $('kpiReelWeight').textContent = fmtNum(totalReelWeight, 1);
+          $('kpiReelTon').textContent = fmtNum(totalReelWeight / 1000, 2) + ' طن';
+          $('kpiBoxTotal').textContent = fmtNum(totalBoxes);
+          $('kpiBoxBundles').textContent = fmtNum(totalBundles) + ' ربطة + فردي';
+          $('kpiItemsCount').textContent = fmtNum(state.reels.length + state.boxes.length);
+          $('kpiItemsSplit').textContent = fmtNum(state.reels.length) + ' صنف بكر · ' + fmtNum(state.boxes.length) + ' صنف علب';
+
+          if (state.user) {
+            $('printMeta').textContent =
+              'القائم بالجرد: ' +
+              state.user.name +
+              ' (' +
+              state.user.phone +
+              ') · تاريخ الطباعة: ' +
+              fmtDate(new Date().toISOString());
+          }
+          renderLowStockBanner();
+        }
+
+        // =================== REELS LOGIC ===================
+        $('reelType').addEventListener('change', () => {
+          const isOther = $('reelType').value === 'أخرى';
+          $('reelCustomTypeWrap').classList.toggle('hidden', !isOther);
+          if (isOther) $('reelCustomType').focus();
+        });
+
+        function resetReelForm() {
+          $('reelForm').reset();
+          $('reelEditId').value = '';
+          $('reelCustomTypeWrap').classList.add('hidden');
+          $('reelFormTitle').textContent = 'إضافة بكر مضلع للجرد';
+          $('reelSubmitBtn').textContent = 'إضافة البكر للجرد';
+          $('reelCancelEditBtn').classList.add('hidden');
+        }
+
+        $('reelCancelEditBtn').addEventListener('click', resetReelForm);
+
+        $('reelForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const selectVal = $('reelType').value;
+          const type = selectVal === 'أخرى' ? ($('reelCustomType').value.trim() || 'أخرى') : selectVal;
+          const widthCm = parseFloat($('reelWidth').value);
+          const gsm = parseFloat($('reelGsm').value);
+          const count = parseInt($('reelCount').value, 10);
+          const weightKg = parseFloat($('reelWeight').value);
+          const note = $('reelNote').value.trim();
+
+          if (!widthCm || widthCm <= 0 || !gsm || gsm <= 0 || isNaN(count) || count < 0 || isNaN(weightKg) || weightKg < 0) {
+            showToast('يرجى إدخال أرقام صحيحة للعرض والجرام والعدد والوزن');
+            return;
+          }
+
+          const editId = $('reelEditId').value;
+          if (editId) {
+            const idx = state.reels.findIndex((r) => r.id === editId);
+            if (idx !== -1) {
+              state.reels[idx] = {
+                ...state.reels[idx],
+                type,
+                widthCm,
+                gsm,
+                count,
+                weightKg,
+                note,
+                updatedAt: new Date().toISOString(),
+              };
+              logAction('بكر المضلع', 'تعديل', `${type} ${widthCm}سم / ${gsm}جم — ${count} بكرة (${weightKg} كجم)`);
+              showToast('تم تعديل صنف البكر');
+            }
+            resetReelForm();
+          } else {
+            state.reels.unshift({
+              id: uid(),
+              type,
+              widthCm,
+              gsm,
+              count,
+              weightKg,
+              note,
+              updatedAt: new Date().toISOString(),
+            });
+            logAction('بكر المضلع', 'إضافة', `${type} ${widthCm}سم / ${gsm}جم — ${count} بكرة (${weightKg} كجم)`);
+            showToast('تمت إضافة البكر إلى الجرد');
+            $('reelForm').reset();
+            $('reelCustomTypeWrap').classList.add('hidden');
+          }
+
+          saveData();
+          renderAll();
+        });
+
+        document.querySelectorAll('#reelTypeFilter .seg-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            state.reelFilterType = btn.getAttribute('data-type');
+            document.querySelectorAll('#reelTypeFilter .seg-btn').forEach((b) => b.classList.toggle('active', b === btn));
+            renderReels();
+          });
+        });
+
+        $('reelSearch').addEventListener('input', (e) => {
+          state.reelSearch = e.target.value.trim().toLowerCase();
+          renderReels();
+        });
+
+        function getTypeClass(type) {
+          if (type === 'تست') return 'type-test';
+          if (type === 'فاخر') return 'type-fakher';
+          if (type === 'أبيض') return 'type-white';
+          if (type === 'كرافت') return 'type-kraft';
+          return '';
+        }
+
+        function renderReels() {
+          const knownTypes = ['تست', 'فاخر', 'أبيض', 'كرافت'];
+          const filtered = state.reels.filter((r) => {
+            if (state.reelFilterType !== 'الكل') {
+              if (state.reelFilterType === 'أخرى') {
+                if (knownTypes.includes(r.type)) return false;
+              } else if (r.type !== state.reelFilterType) {
+                return false;
+              }
+            }
+            if (state.reelSearch) {
+              const hay = `${r.type} ${r.widthCm} ${r.gsm} ${r.note || ''}`.toLowerCase();
+              if (!hay.includes(state.reelSearch)) return false;
+            }
+            return true;
+          });
+
+          const tbody = $('reelsTableBody');
+          const tfoot = $('reelsTableFoot');
+          const empty = $('reelsEmpty');
+
+          if (state.reels.length === 0) {
+            tbody.innerHTML = '';
+            tfoot.classList.add('hidden');
+            empty.classList.remove('hidden');
+            return;
+          }
+          empty.classList.add('hidden');
+
+          if (filtered.length === 0) {
+            tbody.innerHTML =
+              '<tr><td colspan="8" style="text-align:center;padding:24px;color:var(--text-soft)">لا توجد نتائج مطابقة للبحث.</td></tr>';
+            tfoot.classList.add('hidden');
+            return;
+          }
+
+          let footCount = 0;
+          let footWeight = 0;
+
+          tbody.innerHTML = filtered
+            .map((r) => {
+              const c = Number(r.count) || 0;
+              const w = Number(r.weightKg) || 0;
+              footCount += c;
+              footWeight += w;
+              const avg = c > 0 ? fmtNum(w / c, 1) + ' كجم' : '—';
+              const lowFlag = isReelLow(r) ? '<span class="low-stock-note">رصيد منخفض</span>' : '';
+              return `
+                <tr>
+                  <td><span class="type-text ${getTypeClass(r.type)}">${escapeHtml(r.type)}</span>${lowFlag}</td>
+                  <td><span class="num">${fmtNum(r.widthCm, r.widthCm % 1 ? 1 : 0)}</span> سم</td>
+                  <td><span class="num">${fmtNum(r.gsm)}</span> جم</td>
+                  <td><span class="num" style="font-weight:700">${fmtNum(c)}</span></td>
+                  <td><span class="num" style="font-weight:700">${fmtNum(w, 1)}</span> كجم</td>
+                  <td class="muted-inline"><span class="num">${avg}</span></td>
+                  <td class="muted-inline">${r.note ? escapeHtml(r.note) : '—'}</td>
+                  <td class="no-print">
+                    <div class="td-actions">
+                      <button type="button" class="btn btn-sm" onclick="window._app.openMove('reel', '${r.id}')">وارد / منصرف</button>
+                      <button type="button" class="btn btn-sm" onclick="window._app.editReel('${r.id}')">تعديل</button>
+                      <button type="button" class="btn btn-sm btn-danger" onclick="window._app.deleteReel('${r.id}')">حذف</button>
+                    </div>
+                  </td>
+                </tr>
+              `;
+            })
+            .join('');
+
+          $('reelsFootCount').textContent = fmtNum(footCount);
+          $('reelsFootWeight').textContent = fmtNum(footWeight, 1);
+          tfoot.classList.remove('hidden');
+        }
+
+        // =================== BOXES LOGIC ===================
+        function getBoxTotal(b) {
+          if (b.mode === 'bundle') {
+            return (Number(b.bundleCount) || 0) * (Number(b.perBundle) || 0) + (Number(b.looseCount) || 0);
+          }
+          return Number(b.looseCount) || 0;
+        }
+
+        function setBoxFormMode(mode) {
+          state.boxFormMode = mode;
+          document.querySelectorAll('#boxModeToggle .seg-btn').forEach((btn) => {
+            btn.classList.toggle('active', btn.getAttribute('data-mode') === mode);
+          });
+          $('bundleInputsWrap').classList.toggle('hidden', mode !== 'bundle');
+          $('singleInputWrap').classList.toggle('hidden', mode !== 'single');
+          updateBoxLiveTotal();
+        }
+
+        function updateBoxLiveTotal() {
+          let total = 0;
+          if (state.boxFormMode === 'bundle') {
+            const bundles = parseInt($('boxBundles').value, 10) || 0;
+            const per = parseInt($('boxPerBundle').value, 10) || 0;
+            const loose = parseInt($('boxLooseInBundle').value, 10) || 0;
+            total = bundles * per + loose;
+          } else {
+            total = parseInt($('boxSingleCount').value, 10) || 0;
+          }
+          $('boxLiveTotal').textContent = fmtNum(total);
+        }
+
+        document.querySelectorAll('#boxModeToggle .seg-btn').forEach((btn) => {
+          btn.addEventListener('click', () => setBoxFormMode(btn.getAttribute('data-mode')));
+        });
+
+        ['boxBundles', 'boxPerBundle', 'boxLooseInBundle', 'boxSingleCount'].forEach((id) => {
+          $(id).addEventListener('input', updateBoxLiveTotal);
+        });
+
+        function resetBoxForm() {
+          $('boxForm').reset();
+          $('boxEditId').value = '';
+          $('boxBundles').value = '1';
+          $('boxPerBundle').value = '25';
+          $('boxLooseInBundle').value = '0';
+          $('boxSingleCount').value = '0';
+          setBoxFormMode('bundle');
+          $('boxFormTitle').textContent = 'إضافة كرتون علب للجرد';
+          $('boxSubmitBtn').textContent = 'إضافة العلب';
+          $('boxCancelEditBtn').classList.add('hidden');
+        }
+
+        $('boxCancelEditBtn').addEventListener('click', resetBoxForm);
+
+        $('boxForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = $('boxName').value.trim();
+          const lengthCm = parseFloat($('boxLength').value);
+          const widthCm = parseFloat($('boxWidth').value);
+          const heightCm = parseFloat($('boxHeight').value);
+          const note = $('boxNote').value.trim();
+          const mode = state.boxFormMode;
+
+          if (!name || !lengthCm || !widthCm || !heightCm) {
+            showToast('يرجى إدخال اسم الصنف والمقاس (طول × عرض × ارتفاع)');
+            return;
+          }
+
+          let bundleCount = 0;
+          let perBundle = 1;
+          let looseCount = 0;
+
+          if (mode === 'bundle') {
+            bundleCount = parseInt($('boxBundles').value, 10) || 0;
+            perBundle = parseInt($('boxPerBundle').value, 10) || 1;
+            looseCount = parseInt($('boxLooseInBundle').value, 10) || 0;
+            if (perBundle <= 0) {
+              showToast('عدد العلب في الربطة يجب أن يكون 1 على الأقل');
+              return;
+            }
+          } else {
+            looseCount = parseInt($('boxSingleCount').value, 10) || 0;
+          }
+
+          const total = mode === 'bundle' ? bundleCount * perBundle + looseCount : looseCount;
+          const dimText = `${lengthCm}×${widthCm}×${heightCm}`;
+          const editId = $('boxEditId').value;
+
+          if (editId) {
+            const idx = state.boxes.findIndex((b) => b.id === editId);
+            if (idx !== -1) {
+              state.boxes[idx] = {
+                ...state.boxes[idx],
+                name,
+                lengthCm,
+                widthCm,
+                heightCm,
+                mode,
+                bundleCount,
+                perBundle,
+                looseCount,
+                note,
+                updatedAt: new Date().toISOString(),
+              };
+              logAction('الكرتون العلب', 'تعديل', `${name} (${dimText} سم) — الإجمالي ${total} علبة`);
+              showToast('تم تعديل صنف العلب');
+            }
+            resetBoxForm();
+          } else {
+            state.boxes.unshift({
+              id: uid(),
+              name,
+              lengthCm,
+              widthCm,
+              heightCm,
+              mode,
+              bundleCount,
+              perBundle,
+              looseCount,
+              note,
+              updatedAt: new Date().toISOString(),
+            });
+            logAction('الكرتون العلب', 'إضافة', `${name} (${dimText} سم) — الإجمالي ${total} علبة`);
+            showToast('تمت إضافة العلب إلى الجرد');
+            resetBoxForm();
+          }
+
+          saveData();
+          renderAll();
+        });
+
+        document.querySelectorAll('#boxModeFilter .seg-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            state.boxFilterMode = btn.getAttribute('data-filter');
+            document.querySelectorAll('#boxModeFilter .seg-btn').forEach((b) => b.classList.toggle('active', b === btn));
+            renderBoxes();
+          });
+        });
+
+        $('boxSearch').addEventListener('input', (e) => {
+          state.boxSearch = e.target.value.trim().toLowerCase();
+          renderBoxes();
+        });
+
+        function renderBoxes() {
+          const filtered = state.boxes.filter((b) => {
+            if (state.boxFilterMode !== 'all' && b.mode !== state.boxFilterMode) return false;
+            if (state.boxSearch) {
+              const dim = `${b.lengthCm}×${b.widthCm}×${b.heightCm}`;
+              const dimAlt = `${b.lengthCm}*${b.widthCm}*${b.heightCm}`;
+              const hay = `${b.name} ${dim} ${dimAlt} ${b.note || ''}`.toLowerCase();
+              if (!hay.includes(state.boxSearch)) return false;
+            }
+            return true;
+          });
+
+          const tbody = $('boxesTableBody');
+          const tfoot = $('boxesTableFoot');
+          const empty = $('boxesEmpty');
+
+          if (state.boxes.length === 0) {
+            tbody.innerHTML = '';
+            tfoot.classList.add('hidden');
+            empty.classList.remove('hidden');
+            return;
+          }
+          empty.classList.add('hidden');
+
+          if (filtered.length === 0) {
+            tbody.innerHTML =
+              '<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--text-soft)">لا توجد نتائج مطابقة للبحث.</td></tr>';
+            tfoot.classList.add('hidden');
+            return;
+          }
+
+          let footTotal = 0;
+
+          tbody.innerHTML = filtered
+            .map((b) => {
+              const total = getBoxTotal(b);
+              footTotal += total;
+              const dims = `${b.lengthCm} × ${b.widthCm} × ${b.heightCm}`;
+              const modeLabel = b.mode === 'bundle' ? 'بالربطة' : 'عدد فردي';
+              const detailText =
+                b.mode === 'bundle'
+                  ? `<span class="num">${fmtNum(b.bundleCount)}</span> ربطة × <span class="num">${fmtNum(b.perBundle)}</span>` +
+                    (b.looseCount > 0 ? ` + <span class="num">${fmtNum(b.looseCount)}</span> فردي` : '')
+                  : `<span class="num">${fmtNum(b.looseCount)}</span> علبة فردية`;
+
+              const lowFlag = isBoxLow(b) ? '<span class="low-stock-note">رصيد منخفض</span>' : '';
+
+              return `
+                <tr>
+                  <td style="font-weight:700">${escapeHtml(b.name)}${lowFlag}</td>
+                  <td><span class="num">${dims}</span> سم</td>
+                  <td>${modeLabel}</td>
+                  <td>${detailText}</td>
+                  <td><span class="num" style="font-weight:700;color:var(--primary)">${fmtNum(total)}</span> علبة</td>
+                  <td class="muted-inline">${b.note ? escapeHtml(b.note) : '—'}</td>
+                  <td class="no-print">
+                    <div class="td-actions">
+                      <button type="button" class="btn btn-sm" onclick="window._app.openMove('box', '${b.id}')">وارد / منصرف</button>
+                      <button type="button" class="btn btn-sm" onclick="window._app.editBox('${b.id}')">تعديل</button>
+                      <button type="button" class="btn btn-sm btn-danger" onclick="window._app.deleteBox('${b.id}')">حذف</button>
+                    </div>
+                  </td>
+                </tr>
+              `;
+            })
+            .join('');
+
+          $('boxesFootTotal').textContent = fmtNum(footTotal);
+          tfoot.classList.remove('hidden');
+        }
+
+        // =================== QUICK MOVEMENT MODAL ===================
+        document.querySelectorAll('#moveDirToggle .seg-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            state.moveDir = btn.getAttribute('data-dir');
+            document.querySelectorAll('#moveDirToggle .seg-btn').forEach((b) => b.classList.toggle('active', b === btn));
+          });
+        });
+
+        function closeMoveModal() {
+          $('moveModal').classList.add('hidden');
+          state.moveContext = null;
+        }
+
+        $('moveCancelBtn').addEventListener('click', closeMoveModal);
+
+        $('moveForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const ctx = state.moveContext;
+          if (!ctx) return;
+
+          const sign = state.moveDir === 'in' ? 1 : -1;
+          const actionLabel = state.moveDir === 'in' ? 'وارد (+)' : 'منصرف (-)';
+          const note = $('moveNote').value.trim();
+
+          if (ctx.kind === 'reel') {
+            const item = state.reels.find((r) => r.id === ctx.id);
+            if (!item) return;
+            const dCount = parseInt($('moveReelCount').value, 10) || 0;
+            const dWeight = parseFloat($('moveReelWeight').value) || 0;
+
+            if (dCount === 0 && dWeight === 0) {
+              showToast('أدخل عدد البكر أو الوزن للحركة');
+              return;
+            }
+
+            const nextCount = item.count + sign * dCount;
+            const nextWeight = item.weightKg + sign * dWeight;
+            if (nextCount < 0 || nextWeight < 0) {
+              showToast('الرصيد الحالي لا يكفي لخصم هذه الكمية');
+              return;
+            }
+
+            item.count = nextCount;
+            item.weightKg = Math.round(nextWeight * 100) / 100;
+            item.updatedAt = new Date().toISOString();
+
+            logAction(
+              'بكر المضلع',
+              actionLabel,
+              `${item.type} ${item.widthCm}سم/${item.gsm}جم: ${sign > 0 ? '+' : '-'}${dCount} بكرة (${dWeight} كجم)${note ? ' — ' + note : ''}`
+            );
+            if (sign < 0 && isReelLow(item)) {
+              notify(`رصيد ${item.type} ${item.widthCm}سم وصل إلى ${item.count} بكرة (${item.weightKg} كجم)`, 'warning', 'تنبيه نقص مخزون');
+            } else {
+              showToast('تم تحديث رصيد البكر', 'success');
+            }
+          } else {
+            const item = state.boxes.find((b) => b.id === ctx.id);
+            if (!item) return;
+            const dBundles = parseInt($('moveBoxBundles').value, 10) || 0;
+            const dLoose = parseInt($('moveBoxLoose').value, 10) || 0;
+
+            if (dBundles === 0 && dLoose === 0) {
+              showToast('أدخل عدد الربط أو العلب الفردية', 'error');
+              return;
+            }
+
+            const deltaBoxes = (item.mode === 'bundle' ? dBundles * (item.perBundle || 1) : 0) + dLoose;
+            const currentTotal = getBoxTotal(item);
+            const nextTotal = currentTotal + sign * deltaBoxes;
+
+            if (nextTotal < 0) {
+              showToast('الرصيد الحالي من العلب لا يكفي للخصم', 'error');
+              return;
+            }
+
+            if (item.mode === 'bundle') {
+              const per = item.perBundle || 1;
+              item.bundleCount = Math.floor(nextTotal / per);
+              item.looseCount = nextTotal % per;
+            } else {
+              item.looseCount = nextTotal;
+            }
+            item.updatedAt = new Date().toISOString();
+
+            logAction(
+              'الكرتون العلب',
+              actionLabel,
+              `${item.name} (${item.lengthCm}×${item.widthCm}×${item.heightCm}): ${sign > 0 ? '+' : '-'}${deltaBoxes} علبة${note ? ' — ' + note : ''}`
+            );
+            if (sign < 0 && isBoxLow(item)) {
+              notify(`رصيد "${item.name}" وصل إلى ${nextTotal} علبة فقط`, 'warning', 'تنبيه نقص مخزون');
+            } else {
+              showToast('تم تحديث رصيد العلب', 'success');
+            }
+          }
+
+          saveData();
+          closeMoveModal();
+          renderAll();
+        });
+
+        // =================== HISTORY ===================
+        function renderHistory() {
+          const tbody = $('historyTableBody');
+          const empty = $('historyEmpty');
+
+          if (state.history.length === 0) {
+            tbody.innerHTML = '';
+            empty.classList.remove('hidden');
+            return;
+          }
+          empty.classList.add('hidden');
+
+          tbody.innerHTML = state.history
+            .map(
+              (h) => `
+              <tr>
+                <td class="muted-inline"><span class="num">${escapeHtml(fmtDate(h.at))}</span></td>
+                <td>${escapeHtml(h.section)}</td>
+                <td style="font-weight:700">${escapeHtml(h.action)}</td>
+                <td>${escapeHtml(h.details)}</td>
+                <td class="muted-inline">${escapeHtml(h.userName)}${h.userPhone ? ' · <span class="num">' + escapeHtml(h.userPhone) + '</span>' : ''}</td>
+              </tr>
+            `
+            )
+            .join('');
+        }
+
+        $('clearHistoryBtn').addEventListener('click', () => {
+          if (state.history.length === 0) return;
+          openConfirm('مسح سجل الحركات', 'هل تريد مسح سجل الحركات بالكامل؟ أرصدة البكر والعلب لن تتأثر.', () => {
+            state.history = [];
+            saveData();
+            renderHistory();
+            showToast('تم مسح سجل الحركات');
+          });
+        });
+
+        // =================== REPORTS & EXPORT ===================
+        function renderReports() {
+          const reelMap = new Map();
+          state.reels.forEach((r) => {
+            const cur = reelMap.get(r.type) || { count: 0, weight: 0 };
+            cur.count += Number(r.count) || 0;
+            cur.weight += Number(r.weightKg) || 0;
+            reelMap.set(r.type, cur);
+          });
+
+          const reelList = $('reelBreakdownList');
+          if (reelMap.size === 0) {
+            reelList.innerHTML = '<li class="breakdown-item muted-inline">لا توجد بكر مسجلة بعد.</li>';
+          } else {
+            reelList.innerHTML = Array.from(reelMap.entries())
+              .map(
+                ([type, val]) => `
+                <li class="breakdown-item">
+                  <strong>${escapeHtml(type)}</strong>
+                  <span><span class="num">${fmtNum(val.count)}</span> بكرة · <span class="num" style="font-weight:700">${fmtNum(val.weight, 1)}</span> كجم</span>
+                </li>
+              `
+              )
+              .join('');
+          }
+
+          const boxList = $('boxBreakdownList');
+          if (state.boxes.length === 0) {
+            boxList.innerHTML = '<li class="breakdown-item muted-inline">لا توجد علب مسجلة بعد.</li>';
+          } else {
+            const bundleItems = state.boxes.filter((b) => b.mode === 'bundle');
+            const singleItems = state.boxes.filter((b) => b.mode === 'single');
+            const totalBundleBoxes = bundleItems.reduce((s, b) => s + getBoxTotal(b), 0);
+            const totalSingleBoxes = singleItems.reduce((s, b) => s + getBoxTotal(b), 0);
+            const totalBundles = bundleItems.reduce((s, b) => s + (Number(b.bundleCount) || 0), 0);
+
+            boxList.innerHTML = `
+              <li class="breakdown-item">
+                <span>أصناف مجرودة بالربطة (<span class="num">${bundleItems.length}</span> صنف)</span>
+                <span><span class="num">${fmtNum(totalBundles)}</span> ربطة · <span class="num" style="font-weight:700">${fmtNum(totalBundleBoxes)}</span> علبة</span>
+              </li>
+              <li class="breakdown-item">
+                <span>أصناف مجرودة عدد فردي (<span class="num">${singleItems.length}</span> صنف)</span>
+                <span><span class="num" style="font-weight:700">${fmtNum(totalSingleBoxes)}</span> علبة</span>
+              </li>
+              <li class="breakdown-item">
+                <strong>الإجمالي العام للعلب</strong>
+                <strong><span class="num">${fmtNum(totalBundleBoxes + totalSingleBoxes)}</span> علبة</strong>
+              </li>
+            `;
+          }
+        }
+
+        function downloadFile(filename, content, mimeType) {
+          const blob = new Blob([content], { type: mimeType });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }
+
+        function csvCell(val) {
+          const s = String(val == null ? '' : val).replace(/"/g, '""');
+          return `"${s}"`;
+        }
+
+        $('exportReelsCsvBtn').addEventListener('click', () => {
+          if (state.reels.length === 0) {
+            showToast('لا توجد بكر لتصديرها');
+            return;
+          }
+          const headers = ['النوع', 'العرض (سم)', 'الجراماج (جم)', 'العدد (بكرة)', 'الوزن (كجم)', 'ملاحظات', 'آخر تحديث'];
+          const rows = state.reels.map((r) => [
+            r.type,
+            r.widthCm,
+            r.gsm,
+            r.count,
+            r.weightKg,
+            r.note || '',
+            fmtDate(r.updatedAt),
+          ]);
+          const csv = '\uFEFF' + [headers, ...rows].map((row) => row.map(csvCell).join(',')).join('\r\n');
+          downloadFile('جرد_بكر_المضلع.csv', csv, 'text/csv;charset=utf-8;');
+          showToast('تم تصدير ملف جرد البكر');
+        });
+
+        $('exportBoxesCsvBtn').addEventListener('click', () => {
+          if (state.boxes.length === 0) {
+            showToast('لا توجد علب لتصديرها');
+            return;
+          }
+          const headers = ['الصنف', 'الطول (سم)', 'العرض (سم)', 'الارتفاع (سم)', 'طريقة الجرد', 'عدد الربط', 'سعة الربطة', 'عدد فردي', 'إجمالي العلب', 'ملاحظات'];
+          const rows = state.boxes.map((b) => [
+            b.name,
+            b.lengthCm,
+            b.widthCm,
+            b.heightCm,
+            b.mode === 'bundle' ? 'بالربطة' : 'عدد فردي',
+            b.mode === 'bundle' ? b.bundleCount : 0,
+            b.mode === 'bundle' ? b.perBundle : 1,
+            b.looseCount,
+            getBoxTotal(b),
+            b.note || '',
+          ]);
+          const csv = '\uFEFF' + [headers, ...rows].map((row) => row.map(csvCell).join(',')).join('\r\n');
+          downloadFile('جرد_الكرتون_العلب.csv', csv, 'text/csv;charset=utf-8;');
+          showToast('تم تصدير ملف جرد العلب');
+        });
+
+        $('printReportBtn').addEventListener('click', () => {
+          window.print();
+        });
+
+        $('backupJsonBtn').addEventListener('click', () => {
+          const payload = {
+            exportedAt: new Date().toISOString(),
+            developer: 'محمد عصام',
+            reels: state.reels,
+            boxes: state.boxes,
+            history: state.history,
+          };
+          downloadFile('نسخة_احتياطية_جرد_المضلع.json', JSON.stringify(payload, null, 2), 'application/json');
+          showToast('تم حفظ النسخة الاحتياطية');
+        });
+
+        $('restoreJsonInput').addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const parsed = JSON.parse(String(reader.result || '{}'));
+              if (!Array.isArray(parsed.reels) || !Array.isArray(parsed.boxes)) {
+                showToast('ملف النسخة الاحتياطية غير صالح');
+                return;
+              }
+              state.reels = parsed.reels;
+              state.boxes = parsed.boxes;
+              state.history = Array.isArray(parsed.history) ? parsed.history : [];
+              saveData();
+              renderAll();
+              showToast('تم استرجاع النسخة الاحتياطية بنجاح');
+            } catch {
+              showToast('تعذر قراءة ملف النسخة الاحتياطية');
+            }
+          };
+          reader.readAsText(file);
+          e.target.value = '';
+        });
+
+        $('resetAllBtn').addEventListener('click', () => {
+          openConfirm('تصفير كل البيانات', 'تحذير: سيتم مسح جميع بيانات البكر والعلب وسجل الحركات نهائياً.', () => {
+            state.reels = [];
+            state.boxes = [];
+            state.history = [];
+            saveData();
+            renderAll();
+            showToast('تم تصفير جميع البيانات');
+          });
+        });
+
+        // Sample Loaders (Optional for quick start)
+        $('loadSampleReelsBtn').addEventListener('click', () => {
+          state.reels = [
+            { id: uid(), type: 'تست', widthCm: 140, gsm: 150, count: 6, weightKg: 4280, note: 'مخزن أ - صف 1', updatedAt: new Date().toISOString() },
+            { id: uid(), type: 'فاخر', widthCm: 140, gsm: 115, count: 8, weightKg: 4920, note: 'فلوتنج وسط', updatedAt: new Date().toISOString() },
+            { id: uid(), type: 'أبيض', widthCm: 120, gsm: 170, count: 4, weightKg: 2650, note: 'وجه أبيض ممتاز', updatedAt: new Date().toISOString() },
+          ];
+          logAction('بكر المضلع', 'إضافة أمثلة', 'تحميل 3 أصناف بكر للتجربة');
+          saveData();
+          renderAll();
+          showToast('تم تحميل أمثلة البكر');
+        });
+
+        $('loadSampleBoxesBtn').addEventListener('click', () => {
+          state.boxes = [
+            { id: uid(), name: 'كرتونة شحن وسط', lengthCm: 40, widthCm: 30, heightCm: 25, mode: 'bundle', bundleCount: 14, perBundle: 25, looseCount: 8, note: '3 طبقات سادة', updatedAt: new Date().toISOString() },
+            { id: uid(), name: 'علبة بيتزا كبير', lengthCm: 35, widthCm: 35, heightCm: 5, mode: 'bundle', bundleCount: 20, perBundle: 50, looseCount: 0, note: 'أبيض مطبوع', updatedAt: new Date().toISOString() },
+            { id: uid(), name: 'كرتونة تصدير ثقيلة', lengthCm: 60, widthCm: 40, heightCm: 40, mode: 'single', bundleCount: 0, perBundle: 1, looseCount: 42, note: '5 طبقات فردي', updatedAt: new Date().toISOString() },
+          ];
+          logAction('الكرتون العلب', 'إضافة أمثلة', 'تحميل 3 أصناف علب للتجربة');
+          saveData();
+          renderAll();
+          showToast('تم تحميل أمثلة العلب');
+        });
+
+        // Confirm & modal keyboard/backdrop handlers
+        $('confirmCancelBtn').addEventListener('click', closeConfirm);
+        $('confirmOkBtn').addEventListener('click', () => {
+          const cb = state.confirmCallback;
+          closeConfirm();
+          if (typeof cb === 'function') cb();
+        });
+        $('moveModal').addEventListener('click', (e) => {
+          if (e.target === $('moveModal')) closeMoveModal();
+        });
+        $('confirmModal').addEventListener('click', (e) => {
+          if (e.target === $('confirmModal')) closeConfirm();
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            if (!$('moveModal').classList.contains('hidden')) closeMoveModal();
+            if (!$('confirmModal').classList.contains('hidden')) closeConfirm();
+          }
+        });
+
+        // Exposed Row Actions
+        window._app = {
+          editReel(id) {
+            const r = state.reels.find((x) => x.id === id);
+            if (!r) return;
+            const presets = ['تست', 'فاخر', 'أبيض', 'كرافت', 'دوبلكس'];
+            if (presets.includes(r.type)) {
+              $('reelType').value = r.type;
+              $('reelCustomTypeWrap').classList.add('hidden');
+            } else {
+              $('reelType').value = 'أخرى';
+              $('reelCustomTypeWrap').classList.remove('hidden');
+              $('reelCustomType').value = r.type;
+            }
+            $('reelEditId').value = r.id;
+            $('reelWidth').value = r.widthCm;
+            $('reelGsm').value = r.gsm;
+            $('reelCount').value = r.count;
+            $('reelWeight').value = r.weightKg;
+            $('reelNote').value = r.note || '';
+            $('reelFormTitle').textContent = 'تعديل صنف بكر مضلع';
+            $('reelSubmitBtn').textContent = 'حفظ التعديل';
+            $('reelCancelEditBtn').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          },
+
+          deleteReel(id) {
+            const r = state.reels.find((x) => x.id === id);
+            if (!r) return;
+            openConfirm('حذف صنف بكر', `هل تريد حذف "${r.type} ${r.widthCm} سم / ${r.gsm} جم" من الجرد؟`, () => {
+              state.reels = state.reels.filter((x) => x.id !== id);
+              logAction('بكر المضلع', 'حذف', `${r.type} ${r.widthCm}سم / ${r.gsm}جم`);
+              saveData();
+              renderAll();
+              showToast('تم حذف صنف البكر');
+            });
+          },
+
+          editBox(id) {
+            const b = state.boxes.find((x) => x.id === id);
+            if (!b) return;
+            $('boxEditId').value = b.id;
+            $('boxName').value = b.name;
+            $('boxLength').value = b.lengthCm;
+            $('boxWidth').value = b.widthCm;
+            $('boxHeight').value = b.heightCm;
+            $('boxNote').value = b.note || '';
+            setBoxFormMode(b.mode);
+            if (b.mode === 'bundle') {
+              $('boxBundles').value = b.bundleCount;
+              $('boxPerBundle').value = b.perBundle;
+              $('boxLooseInBundle').value = b.looseCount;
+            } else {
+              $('boxSingleCount').value = b.looseCount;
+            }
+            updateBoxLiveTotal();
+            $('boxFormTitle').textContent = 'تعديل صنف كرتون علب';
+            $('boxSubmitBtn').textContent = 'حفظ التعديل';
+            $('boxCancelEditBtn').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          },
+
+          deleteBox(id) {
+            const b = state.boxes.find((x) => x.id === id);
+            if (!b) return;
+            openConfirm('حذف صنف علب', `هل تريد حذف "${b.name}" من جرد العلب؟`, () => {
+              state.boxes = state.boxes.filter((x) => x.id !== id);
+              logAction('الكرتون العلب', 'حذف', `${b.name} (${b.lengthCm}×${b.widthCm}×${b.heightCm})`);
+              saveData();
+              renderAll();
+              showToast('تم حذف صنف العلب');
+            });
+          },
+
+          openMove(kind, id) {
+            state.moveContext = { kind, id };
+            state.moveDir = 'in';
+            document.querySelectorAll('#moveDirToggle .seg-btn').forEach((b) => {
+              b.classList.toggle('active', b.getAttribute('data-dir') === 'in');
+            });
+            $('moveNote').value = '';
+
+            if (kind === 'reel') {
+              const r = state.reels.find((x) => x.id === id);
+              if (!r) return;
+              $('moveModalTitle').textContent = `حركة بكر: ${r.type} ${r.widthCm} سم`;
+              $('moveModalSub').textContent = `الرصيد الحالي: ${fmtNum(r.count)} بكرة · ${fmtNum(r.weightKg, 1)} كجم`;
+              $('moveReelFields').classList.remove('hidden');
+              $('moveBoxFields').classList.add('hidden');
+              $('moveReelCount').value = '1';
+              $('moveReelWeight').value = r.count > 0 ? String(Math.round((r.weightKg / r.count) * 10) / 10) : '0';
+            } else {
+              const b = state.boxes.find((x) => x.id === id);
+              if (!b) return;
+              $('moveModalTitle').textContent = `حركة علب: ${b.name}`;
+              $('moveModalSub').textContent = `المقاس ${b.lengthCm}×${b.widthCm}×${b.heightCm} سم · الرصيد الحالي: ${fmtNum(getBoxTotal(b))} علبة`;
+              $('moveReelFields').classList.add('hidden');
+              $('moveBoxFields').classList.remove('hidden');
+              $('moveBoxBundles').value = b.mode === 'bundle' ? '1' : '0';
+              $('moveBoxLoose').value = b.mode === 'single' ? '1' : '0';
+              $('moveBoxBundles').parentElement.classList.toggle('hidden', b.mode !== 'bundle');
+            }
+            $('moveModal').classList.remove('hidden');
+          },
+        };
+
+        // =================== SETTINGS UI & HANDLERS ===================
+        function renderNotifCenter() {
+          const list = $('notifCenterList');
+          if (!list) return;
+          if (state.notifs.length === 0) {
+            list.innerHTML = '<li class="breakdown-item muted-inline">لا توجد تنبيهات مسجلة في هذه الجلسة.</li>';
+            return;
+          }
+          list.innerHTML = state.notifs
+            .slice(0, 12)
+            .map(
+              (n) => `
+              <li class="breakdown-item">
+                <div>
+                  <strong style="font-size:13px">${escapeHtml(n.label)}:</strong>
+                  <span style="font-size:13px">${escapeHtml(n.msg)}</span>
+                </div>
+                <span class="muted-inline num">${escapeHtml(fmtDate(n.at))}</span>
+              </li>
+            `
+            )
+            .join('');
+        }
+
+        function renderSettingsUI() {
+          const s = state.settings;
+          document.querySelectorAll('#modeToggle .seg-btn').forEach((b) => {
+            b.classList.toggle('active', b.getAttribute('data-mode') === s.mode);
+          });
+          document.querySelectorAll('#themePicker .theme-chip').forEach((b) => {
+            b.classList.toggle('active', b.getAttribute('data-theme') === s.theme);
+          });
+          document.querySelectorAll('#shapeToggle .seg-btn').forEach((b) => {
+            b.classList.toggle('active', b.getAttribute('data-shape') === s.shape);
+          });
+          document.querySelectorAll('#densityToggle .seg-btn').forEach((b) => {
+            b.classList.toggle('active', b.getAttribute('data-density') === s.density);
+          });
+
+          $('optNotifToast').checked = !!s.notifToast;
+          $('optNotifSound').checked = !!s.notifSound;
+          $('optLowReelCount').value = s.lowReelCount;
+          $('optLowReelWeight').value = s.lowReelWeight;
+          $('optLowBoxCount').value = s.lowBoxCount;
+
+          const statusEl = $('browserNotifStatus');
+          const btnEl = $('enableBrowserNotifBtn');
+          if (!('Notification' in window)) {
+            statusEl.textContent = 'المتصفح الحالي لا يدعم إشعارات النظام.';
+            btnEl.textContent = 'غير مدعوم';
+            btnEl.disabled = true;
+          } else if (Notification.permission === 'granted') {
+            statusEl.textContent = s.notifBrowser ? 'إشعارات المتصفح مفعّلة وتعمل تلقائياً.' : 'الإذن ممنوح (موقوف من المفتاح).';
+            btnEl.textContent = s.notifBrowser ? 'إيقاف' : 'تفعيل';
+          } else if (Notification.permission === 'denied') {
+            statusEl.textContent = 'تم حظر الإشعارات من إعدادات المتصفح.';
+            btnEl.textContent = 'محظور';
+          } else {
+            statusEl.textContent = 'اضغط تفعيل لمنح إذن إشعارات المتصفح والموبايل.';
+            btnEl.textContent = 'تفعيل';
+          }
+
+          renderNotifCenter();
+        }
+
+        document.querySelectorAll('#modeToggle .seg-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            state.settings.mode = btn.getAttribute('data-mode');
+            saveSettings();
+            renderSettingsUI();
+            notify(state.settings.mode === 'dark' ? 'تم تفعيل الوضع الليلي' : 'تم تفعيل الوضع النهاري', 'info', 'المظهر');
+          });
+        });
+
+        document.querySelectorAll('#themePicker .theme-chip').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            state.settings.theme = btn.getAttribute('data-theme');
+            saveSettings();
+            renderSettingsUI();
+            notify('تم تغيير ثيم الألوان بنجاح', 'info', 'الثيم');
+          });
+        });
+
+        document.querySelectorAll('#shapeToggle .seg-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            state.settings.shape = btn.getAttribute('data-shape');
+            saveSettings();
+            renderSettingsUI();
+            notify('تم تحديث شكل الحواف والأزرار', 'info', 'الأشكال');
+          });
+        });
+
+        document.querySelectorAll('#densityToggle .seg-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            state.settings.density = btn.getAttribute('data-density');
+            saveSettings();
+            renderSettingsUI();
+            notify('تم تحديث حجم صفوف الجداول', 'info', 'العرض');
+          });
+        });
+
+        $('optNotifToast').addEventListener('change', (e) => {
+          state.settings.notifToast = e.target.checked;
+          saveSettings();
+          if (e.target.checked) notify('تم تفعيل إشعارات الشاشة', 'success');
+        });
+
+        $('optNotifSound').addEventListener('change', (e) => {
+          state.settings.notifSound = e.target.checked;
+          saveSettings();
+          if (e.target.checked) notify('تم تفعيل صوت التنبيهات', 'success');
+        });
+
+        $('enableBrowserNotifBtn').addEventListener('click', async () => {
+          if (!('Notification' in window)) return;
+          if (Notification.permission === 'granted') {
+            state.settings.notifBrowser = !state.settings.notifBrowser;
+            saveSettings();
+            renderSettingsUI();
+            notify(state.settings.notifBrowser ? 'تم تشغيل إشعارات المتصفح' : 'تم إيقاف إشعارات المتصفح', 'info');
+            return;
+          }
+          try {
+            const perm = await Notification.requestPermission();
+            state.settings.notifBrowser = perm === 'granted';
+            saveSettings();
+            renderSettingsUI();
+            if (perm === 'granted') {
+              notify('تم تفعيل إشعارات المتصفح والموبايل بنجاح', 'success');
+            } else {
+              notify('لم يتم السماح بإشعارات المتصفح', 'warning');
+            }
+          } catch {
+            notify('تعذر طلب إذن الإشعارات', 'error');
+          }
+        });
+
+        ['optLowReelCount', 'optLowReelWeight', 'optLowBoxCount'].forEach((id) => {
+          $(id).addEventListener('change', () => {
+            state.settings.lowReelCount = Math.max(0, parseInt($('optLowReelCount').value, 10) || 0);
+            state.settings.lowReelWeight = Math.max(0, parseFloat($('optLowReelWeight').value) || 0);
+            state.settings.lowBoxCount = Math.max(0, parseInt($('optLowBoxCount').value, 10) || 0);
+            saveSettings();
+            renderKPIs();
+            notify('تم حفظ حدود تنبيه نقص المخزون', 'success');
+          });
+        });
+
+        $('testNotifyBtn').addEventListener('click', () => {
+          notify('الإشعارات الصوتية والمرئية تعمل بنجاح!', 'success', 'اختبار الإشعار');
+        });
+
+        $('clearNotifLogBtn').addEventListener('click', () => {
+          state.notifs = [];
+          localStorage.setItem(STORAGE_KEYS.notifs, '[]');
+          renderNotifCenter();
+        });
+
+        function renderAll() {
+          renderKPIs();
+          renderReels();
+          renderBoxes();
+          if (state.activeTab === 'history') renderHistory();
+          if (state.activeTab === 'reports') renderReports();
+          if (state.activeTab === 'settings') renderSettingsUI();
+        }
+
+        // Init
+        loadState();
+        bindWhatsappLinks();
+        updateBoxLiveTotal();
+        renderAuth();
+      })();
+    </script>
+  </body>
+</html>
